@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     --background: #f0f2f5;
     --red: #e52e4d;
     --blue: #5429cc;
+    --green: #33cc95;
 
     --blue-light: #6933ff;
 
@@ -19,12 +20,12 @@ export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
-    box-sizing: 0;
+    box-sizing: border-box;
   }
 
   /*
     - a fonte padrao sempre eh 16px, o tamanho ideal para desktop
-    - uma boa pratica eh usar a medida rem para o layout, por exemplo em botoes, imagens, icones, etc. Dessa forma, a pagina se torna 
+    - uma boa pratica eh usar a medida rem para o layout, por exemplo nos padding, margin, etc. Dessa forma, a pagina se torna 
     muito mais responsiva, ja que ao diminuir o tamanho da tela do dispositivo a fonte tambem ira diminuir e com isso todos os
     elementos que possuem como unidade de medida o rem irao se ajustar na nova tela
   */
@@ -51,6 +52,18 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
+  // input, textarea e button por padrao nao importam as estilizacoes de font do body(font-size, font-weight, font-family, ...)
+  body, input, textarea, button {
+    font-family: "Poppins", sans-serif;
+    // o padrao eh 500
+    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6, strong {
+    // o padrao deve ser um valor maior
+    font-weight: 600;
+  }
+
   button {
     cursor: pointer;
   }
@@ -58,5 +71,42 @@ export const GlobalStyle = createGlobalStyle`
   [disabled] {
     opacity: .6;
     cursor: not-allowed;
+  }
+
+  .react-modal-overlay {
+    background: rgba(0, 0, 0, .5);
+
+    position: fixed; // ajuda quando a tela esta scroll
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .react-modal-content {
+    max-width: 576px;
+    width: 100%;
+    background: var(--background);
+    padding: 3rem;
+    position: relative;
+    border-radius: .25rem;
+  }
+
+  .react-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
+
+    transition: filter .2s;
+
+    &:hover {
+      filter: brightness(.8);
+    }
   }
 `;
